@@ -1,0 +1,18 @@
+# Web framework + ASGI server
+fastapi>=0.115
+uvicorn[standard]>=0.32
+
+# MongoDB (official async driver, AsyncMongoClient)
+pymongo>=4.13
+
+# Config & validation
+pydantic>=2.10
+pydantic-settings>=2.6
+email-validator>=2.2
+
+# Auth
+bcrypt>=4.2
+PyJWT>=2.10
+
+# LLM (Groq, OpenAI-compatible API, Llama models)
+groq>=0.13

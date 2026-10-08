@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* BookLeaf brand colours (from the assignment document) */
+@theme {
+  --color-brand-50: #eef5fa;
+  --color-brand-100: #d6e7f2;
+  --color-brand-500: #2e86c1;
+  --color-brand-700: #1b5276;
+  --color-brand-900: #123a54;
+}
+
+body {
+  @apply bg-slate-50 text-slate-800 antialiased;
+}
