@@ -1,0 +1,38 @@
+# Render Blueprint for the FastAPI backend.
+# Render dashboard -> New -> Blueprint -> pick this repo. Secrets marked "sync: false" are asked for
+# on first deploy and are never stored in git.
+services:
+  - type: web
+    name: bookleaf-backend
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: APP_ENV
+        value: production
+      # Your Vercel URL, e.g. https://bookleaf-assignment.vercel.app
+      - key: CORS_ORIGINS
+        sync: false
+      # MongoDB Atlas connection string (mongodb+srv://...)
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB
+        value: bookleaf_support
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRE_MINUTES
+        value: "10080"
+      # Leave empty to run in rules-only fallback mode
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_CLASSIFY_MODEL
+        value: openai/gpt-oss-20b
+      - key: GROQ_DRAFT_MODEL
+        value: openai/gpt-oss-120b
+      - key: GROQ_TIMEOUT_SECONDS
+        value: "20"
